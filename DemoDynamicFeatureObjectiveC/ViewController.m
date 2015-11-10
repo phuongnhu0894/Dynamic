@@ -1,4 +1,10 @@
 #import "ViewController.h"
+@interface ViewController()
+@property (weak, nonatomic) IBOutlet UITextField *checkTextField;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
+@property (weak, nonatomic) IBOutlet UIImageView *animalImageView;
+
+@end
 
 #pragma mark - Animals
 @interface Cat : NSObject
@@ -91,6 +97,20 @@
         if ([turtle conformsToProtocol:protocol]) {
             NSLog(@"Turtle adopts %@ protocol", protocolName);
         }
+    }
+}
+- (IBAction)checkAnimalEvent:(id)sender {
+    NSString *input = self.checkTextField.text;
+    Class class = NSClassFromString(input);
+    if (class == [Cat class]) {
+        self.animalImageView.image = [UIImage imageNamed:@"cat"];
+    
+    } else if (class== [Dog class]) {
+        self.animalImageView.image = [UIImage imageNamed:@"dog"];
+    } else if (class == [Mouse class] ) {
+        self.animalImageView.image = [UIImage imageNamed:@"mouse"];
+    } else {
+        self.animalImageView.image = [UIImage imageNamed:@"error"];
     }
 }
 
